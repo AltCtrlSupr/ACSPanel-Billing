@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Contract
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="ACS\ACSPanelBillingBundle\Entity\ContractRepository")
  */
 class Contract
 {
@@ -55,6 +55,16 @@ class Contract
      * @ORM\Column(name="duration", type="integer")
      */
     private $duration;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="\ACS\ACSPanelUsersBundle\Entity\User")
+     */
+    private $seller;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="\ACS\ACSPanelUsersBundle\Entity\User")
+     */
+    private $customer;
 
 
     /**
@@ -186,5 +196,59 @@ class Contract
     {
         return $this->duration;
     }
-}
 
+    /**
+     * Set seller
+     *
+     * @param \ACS\ACSPanelUsersBundle\Entity\User $seller
+     *
+     * @return Contract
+     */
+    public function setSeller(\ACS\ACSPanelUsersBundle\Entity\User $seller = null)
+    {
+        $this->seller = $seller;
+
+        return $this;
+    }
+
+    /**
+     * Get seller
+     *
+     * @return \ACS\ACSPanelUsersBundle\Entity\User
+     */
+    public function getSeller()
+    {
+        return $this->seller;
+    }
+
+    /**
+     * Set customer
+     *
+     * @param \ACS\ACSPanelUsersBundle\Entity\User $customer
+     *
+     * @return Contract
+     */
+    public function setCustomer(\ACS\ACSPanelUsersBundle\Entity\User $customer = null)
+    {
+        $this->customer = $customer;
+
+        return $this;
+    }
+
+    /**
+     * Get customer
+     *
+     * @return \ACS\ACSPanelUsersBundle\Entity\User
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+
+    public function hasExpired()
+    {
+        $creationDate = $this->getCreatedAt();
+        //$expiresDate = $creationDate->add();
+        return false;
+    }
+}

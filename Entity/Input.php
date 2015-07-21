@@ -49,6 +49,10 @@ class Input
      */
     private $comment;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="\ACS\ACSPanelUsersBundle\Entity\User")
+     */
+    private $customer;
 
     /**
      * Get id
@@ -155,5 +159,28 @@ class Input
     {
         return $this->comment;
     }
-}
 
+    /**
+     * Set customer
+     *
+     * @param \ACS\ACSPanelUsersBundle\Entity\User $customer
+     *
+     * @return Input
+     */
+    public function setCustomer(\ACS\ACSPanelUsersBundle\Entity\User $customer = null)
+    {
+        $this->customer = $customer;
+
+        return $this;
+    }
+
+    /**
+     * Get customer
+     *
+     * @return \ACS\ACSPanelUsersBundle\Entity\User
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+}
