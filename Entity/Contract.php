@@ -52,6 +52,8 @@ class Contract
     /**
      * @var integer
      *
+     * Contract duration expressed in days
+     *
      * @ORM\Column(name="duration", type="integer")
      */
     private $duration;
