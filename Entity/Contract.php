@@ -68,7 +68,6 @@ class Contract
      */
     private $customer;
 
-
     /**
      * Get id
      *
@@ -149,6 +148,36 @@ class Contract
     public function getExpiresAt()
     {
         return $this->expiresAt;
+    }
+
+    /**
+     * Returns true if the contract has expired
+     *
+     * @return boolean
+     */
+    public function hasExpired()
+    {
+        $expiresDate = $this->getExpiresAt();
+        $nowTime = new \DateTime();
+
+        if ($expiresDate < $nowTime) {
+            return true;
+        }
+
+        return false;
+
+    }
+
+    /**
+     * Renew the contract for the period
+     */
+    public function renew()
+    {
+        $expiresDate = $this->getexpiresAt();
+        $duration = $this->getDuration();
+        $expiresDate->modify("+ $duration days");
+        $this->setExpiresAt($expiresDate);
+        return $this;
     }
 
     /**
@@ -247,10 +276,4 @@ class Contract
         return $this->customer;
     }
 
-    public function hasExpired()
-    {
-        $creationDate = $this->getCreatedAt();
-        //$expiresDate = $creationDate->add();
-        return false;
-    }
 }
