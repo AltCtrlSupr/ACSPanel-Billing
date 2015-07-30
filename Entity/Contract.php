@@ -169,7 +169,7 @@ class Contract
     }
 
     /**
-     * Renew the contract for the period
+     * Renew the contract for the duration
      */
     public function renew()
     {

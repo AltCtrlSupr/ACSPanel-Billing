@@ -20,6 +20,7 @@ class ContractTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(false, $contract->hasExpired());
 
+        // Testing contract renew method
         $suposedNewExpiresDate = new \DateTime();
         $suposedNewExpiresDate->modify("+ 363 days");
         $contract = new Contract();
